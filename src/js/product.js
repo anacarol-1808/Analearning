@@ -1,19 +1,19 @@
 import { setLocalStorage } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
 
-var items = [];
 function addProductToCart(product) {
   const existing = localStorage.getItem("so-cart");
   const shoppingCart = [];
-  if(existing) {
+  if (existing) {
     try {
-      shoppingCart.push(...JSON.parse(existing))
-    } catch(err) {console.error("ERROR deserializing cart", err);}
+      shoppingCart.push(...JSON.parse(existing));
+    } catch (err) {
+      console.error("ERROR deserializing cart", err);
     }
-    shoppingCart.push(product);
-    localStorage.setItem("so-cart", JSON.stringify(shoppingCart));
   }
-
+  shoppingCart.push(product);
+  localStorage.setItem("so-cart", JSON.stringify(shoppingCart));
+}
 
 // add to cart button event handler
 async function addToCartHandler(e) {
