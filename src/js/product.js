@@ -1,19 +1,10 @@
-import { setLocalStorage, getParam } from "./utils.mjs";
+import { setLocalStorage } from "./utils.mjs";
 import { findProductById } from "./productData.mjs";
+import { getParam } from "./utils.mjs";
+import { productDetails } from "./productDetails.mjs";
 
-function addProductToCart(product) {
-  const existing = localStorage.getItem("so-cart");
-  const shoppingCart = [];
-  if (existing) {
-    try {
-      shoppingCart.push(...JSON.parse(existing));
-    } catch (err) {
-      console.error("ERROR deserializing cart", err);
-    }
-  }
-  shoppingCart.push(product);
-  localStorage.setItem("so-cart", JSON.stringify(shoppingCart));
-}
+const productId = getParam("product");
+productDetails(productId);
 
 // add to cart button event handler
 async function addToCartHandler(e) {
@@ -25,3 +16,7 @@ async function addToCartHandler(e) {
 document
   .getElementById("addToCart")
   .addEventListener("click", addToCartHandler);
+
+// test the GetParam function
+//console.log(getParam('product'));
+//console.log(findProductById(getParam('product')));
