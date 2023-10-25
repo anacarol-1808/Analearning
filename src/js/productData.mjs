@@ -2,6 +2,7 @@ function convertToJson(res) {
   if (res.ok) {
     return res.json();
   } else {
+    console.log(res);
     throw new Error("Bad Response");
   }
 }
